@@ -1,6 +1,6 @@
 object Isogram {
 
     fun isIsogram(input: String): Boolean {
-        TODO("Implement this function to complete the task")
+        return input.filter{ it.isLetter() }.toList().groupingBy { it.lowercase() }.eachCount().all { (_, count) -> count == 1 }
     }
 }
