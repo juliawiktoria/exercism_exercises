@@ -1,8 +1,11 @@
-class Series {
+class Series(var word: String) {
 
-    // TODO: Implement proper constructor
+    init {
+        if (word.any { it.isLetter() }) throw IllegalArgumentException()
+    }
 
     fun getLargestProduct(span: Int): Long {
-        TODO("Implement this function to complete the task")
+        if (span > this.word.length || span < 1) throw IllegalArgumentException()
+        return (this.word.windowed(span) { it.map(Character::getNumericValue).reduce(Int::times) }.maxOrNull() ?: 0).toLong()
     }
 }
