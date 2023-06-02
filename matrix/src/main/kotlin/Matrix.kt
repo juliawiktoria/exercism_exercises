@@ -1,10 +1,17 @@
 class Matrix(private val matrixAsString: String) {
-
-    fun column(colNr: Int): List<Int> {
-        TODO("Implement this to complete the task")
+    val datas: List<List<Int>>
+    init {
+        datas = matrixAsString
+            .replace("[ ]+".toRegex(), " ")
+            .split("\n")
+            .map {
+                it.trim().split(" ").map { it.toInt() }
+            }
     }
-
+    fun column(colNr: Int): List<Int> {
+        return datas.map { it[colNr - 1] }
+    }
     fun row(rowNr: Int): List<Int> {
-        TODO("Implement this to complete the task")
+        return datas.get(rowNr - 1)
     }
 }
