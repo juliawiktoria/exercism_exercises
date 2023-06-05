@@ -1,6 +1,12 @@
-class PhoneNumber {
+class PhoneNumber(rawNumber: String) {
+    val number: String?
 
-    // TODO: Implement proper constructor
-
-    val number: String? = TODO("Implement this getter to complete the task")
+    init {
+        val cleanedNumber = rawNumber.replace(Regex("""[^0-9]"""), "")
+        number = when {
+            cleanedNumber.length == 11 && cleanedNumber[0] == '1' && cleanedNumber[1] != '0' && cleanedNumber[1] != '1' && cleanedNumber[4] != '0' && cleanedNumber[4] != '1' -> cleanedNumber.substring(1)
+            cleanedNumber.length == 10 && cleanedNumber[0] != '0' && cleanedNumber[0] != '1' && cleanedNumber[3] != '0' && cleanedNumber[3] != '1' -> cleanedNumber
+            else -> throw IllegalArgumentException()
+        }
+    }
 }
