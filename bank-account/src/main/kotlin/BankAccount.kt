@@ -1,11 +1,22 @@
 class BankAccount {
-    // TODO: implement read access to 'balance'
-
-    fun adjustBalance(amount: Long){
-        TODO("Implement the function to complete the task")
+    private var closed = false
+    private var realBalance = 0
+    val balance: Int
+        get() {
+            synchronized(this) {
+                check(!closed) { "account is closed" }
+                return realBalance
+            }
+        }
+    fun adjustBalance(delta: Int) {
+        synchronized(this) {
+            check(!closed) { "account is closed" }
+            realBalance += delta
+        }
     }
-
     fun close() {
-        TODO("Implement the function to complete the task")
+        synchronized(this) {
+            closed = true
+        }
     }
 }
