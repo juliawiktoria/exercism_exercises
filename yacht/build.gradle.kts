@@ -21,4 +21,3 @@ tasks.withType<Test> {
         events("passed", "failed", "skipped")
     }
 }
-Ą
