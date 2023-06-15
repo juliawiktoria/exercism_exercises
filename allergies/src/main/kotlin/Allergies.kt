@@ -1,11 +1,8 @@
-class Allergies {
-    // TODO: implement proper constructor to complete the task
-
-    fun getList(): List<Allergen> {
-        TODO("Implement the function to complete the task")
+class Allergies(score: Int) {
+    private val allergies = mutableListOf<Allergen>()
+    init {
+        Allergen.values().filterTo(allergies) { it.score and score > 0 }
     }
-
-    fun isAllergicTo(allergen: Allergen) {
-        TODO("Implement the function to complete the task")
-    }
+    fun isAllergicTo(allergen: Allergen) = allergies.contains(allergen)
+    fun getList(): List<Allergen> = allergies.toList()
 }
