@@ -1,6 +1,7 @@
 object Sieve {
-
-    fun primesUpTo(upperBound: Int): List<Int> {
-        TODO("Implement this function to complete the task")
+    fun primesUpTo(n: Int): List<Int> {
+        var primes = (2 .. n).toList()
+        primes.forEach { primes -= ((it + it) .. n step it).toList() }
+        return primes
     }
 }
